@@ -54,7 +54,7 @@ async function store(req, res, next) {
           email: email,
           password: await bcrypt.hash(password, 10),
           bio: "",
-          avatar: "img/avatars/" + files.avatar.newFilename,
+          avatar: files.avatar.newFilename,
           tweets: [],
           following: [],
           followers: [],
