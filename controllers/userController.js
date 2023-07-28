@@ -27,7 +27,7 @@ async function store(req, res, next) {
   try {
     const form = formidable({
       multiples: true,
-      uploadDir: __dirname + "/../public/img",
+      uploadDir: __dirname + "/../public/img/avatars",
       keepExtensions: true,
     });
 
@@ -54,7 +54,7 @@ async function store(req, res, next) {
           email: email,
           password: await bcrypt.hash(password, 10),
           bio: "",
-          avatar: files.avatar.newFilename,
+          avatar: "img/avatars/" + files.avatar.newFilename,
           tweets: [],
           following: [],
           followers: [],
