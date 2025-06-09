@@ -10,7 +10,20 @@ const methodNotAllowedHandler = require("./middlewares/methodNotAllowed");
 const APP_PORT = process.env.APP_PORT || 3000;
 const app = express();
 
-app.use(cors());
+// Allow requests from your frontend domain
+const allowedOrigins = [
+  "https://twitter-clone-mendaro.vercel.app/"
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+
+// app.use(cors());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
